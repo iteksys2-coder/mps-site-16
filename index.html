@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Smoke</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3B82F6;
+            --secondary-color: #10B981;
+            --background-color: #FFFFFF;
+            --text-color: #0F172A;
+            --font-family: &#039;Inter&#039;, system-ui, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFENEVEOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA2QjZENCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHg9IjEyMCIgeT0iMTIwIiB3aWR0aD0iOTYwIiBoZWlnaHQ9IjU2MCIgcng9IjI4IiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMTYiLz48dGV4dCB4PSIxODAiIHk9IjM3NSIgZm9udC1zaXplPSI2MiIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiNmZmZmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPkhlcm88L3RleHQ+PHRleHQgeD0iMTgwIiB5PSI0NDUiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjZTJlOGYwIj5WaXN1ZWwgbG9jYWwgY29tcGFjdDwvdGV4dD48L3N2Zz4=') center/cover no-repeat;
+            min-height: 84vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+        }
+        .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: 1rem; }
+        .hero p { font-size: clamp(1rem, 2.5vw, 1.4rem); margin-bottom: 2rem; }
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.2s ease;
+        }
+        .btn:hover { background: var(--secondary-color); }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.4rem;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.4rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--primary-color);
+        }
+        .about {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .about img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            text-align: center;
+        }
+        .service {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        .service i {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .contact-info p { margin-bottom: 0.7rem; }
+        .contact-info i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            width: 1.2rem;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.9rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font: inherit;
+        }
+        .contact-form button {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .map-frame { margin-top: 1rem; border-radius: 10px; overflow: hidden; }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #1f2937;
+            color: #fff;
+        }
+        footer a { color: #93c5fd; }
+        @media (max-width: 860px) {
+            .about, .contact { grid-template-columns: 1fr; }
+            .container { padding: 3rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div>
+            <h1>Deploy Smoke</h1>
+            <p>Deploy smoke</p>
+            <a href="#contact" class="btn">Nous contacter</a>
+        </div>
+    </section>
+
+    <div class="container" id="about">
+        <h2 class="section-title">A propos</h2>
+        <div class="about">
+            <div>
+                <p>About deploy</p>
+            </div>
+            <div>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBGNzY2RSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzE0QjhBNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHg9IjEyMCIgeT0iMTIwIiB3aWR0aD0iOTYwIiBoZWlnaHQ9IjU2MCIgcng9IjI4IiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMTYiLz48dGV4dCB4PSIxODAiIHk9IjM3NSIgZm9udC1zaXplPSI2MiIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiNmZmZmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPkEgcHJvcG9zPC90ZXh0Pjx0ZXh0IHg9IjE4MCIgeT0iNDQ1IiBmb250LXNpemU9IjM0IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iI2UyZThmMCI+VmlzdWVsIGxvY2FsIGNvbXBhY3Q8L3RleHQ+PC9zdmc+" alt="A propos Deploy Smoke" loading="lazy" decoding="async">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="services">
+        <h2 class="section-title">Nos services</h2>
+        <div class="services">
+            <div class="service">
+                <i class="fas fa-cog"></i>
+                <h3>Service 1</h3>
+                <p>Accompagnement personnalise</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-tools"></i>
+                <h3>Service 2</h3>
+                <p>Intervention rapide</p>
+            </div>
+            <div class="service">
+                <i class="fas fa-clock"></i>
+                <h3>Service 3</h3>
+                <p>Qualite professionnelle</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact">
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 3 rue test</p>
+                <p><i class="fas fa-phone"></i> 0102030405</p>
+                <p><i class="fas fa-envelope"></i> ovh.deploy.1772747446@example.net</p>
+                <p><i class="fas fa-clock"></i> 9h-18h</p>
+            </div>
+            <div class="contact-form">
+                <form action="#" method="post" onsubmit="return false;">
+                    <input type="text" placeholder="Nom" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="5" placeholder="Message"></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Deploy Smoke - Cree avec <a href="http://tconsex.cluster021.hosting.ovh.net" target="_blank" rel="noopener">MonPetitSite.fr</a></p>
+        <p class="mps-signature">Cree par <a href="https://monpetitsite.fr" target="_blank" rel="noopener">MonPetitSite.fr</a></p>
+    </footer>
+</body>
+</html>
